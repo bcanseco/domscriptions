@@ -55,7 +55,7 @@ const onAltClickVideo = (e) => {
 
 /**
  * @summary Creates a mapping of video IDs to their grid elements.
- * @desc Sets up each video with a listener; @fires onAltCLickVideo
+ * @desc Sets up each video with a listener; @fires onAltClickVideo
  * @returns {object} { id: <ytd-grid-video-renderer>... }
  */
 const getVideoMap = () => {
