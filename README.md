@@ -1,4 +1,4 @@
-# Domscriptions
+# Domscriptions [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jookgadkghdacihobldikclfhihgegla.svg)](https://chrome.google.com/webstore/detail/jookgadkghdacihobldikclfhihgegla)
 > Easily mark (without hiding!) your YouTube subscriptions.
 
 This extension lets you <kbd>ALT</kbd>+<kbd>CLICK</kbd> video thumbnails on your [subscriptions feed](https://youtube.com/feed/subscriptions) to toggle tinting them a darker shade of color. Useful for people that have a lot of subscriptions and like making their own visual cues.
