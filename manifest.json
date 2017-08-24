@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Domscriptions",
+  "version": "1.0.0",
+  "description": "Easily mark (without hiding!) your YouTube subscriptions.",
+  "icons": {
+    "48": "lib/48.png",
+    "128": "lib/128.png"
+  },
+  "author": "Borja Canseco",
+  "homepage_url": "https://github.com/bcanseco/domscriptions",
+  "permissions": [
+    "storage",
+    "*://*.youtube.com/"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/feed/subscriptions*"],
+      "css": ["dist/domscriptions.min.css"],
+      "js": ["dist/domscriptions.min.js"]
+    }
+  ],
+  "options_ui": {
+    "page": "dist/domscriptions.html",
+    "chrome_style": true
+  },
+  "content_security_policy": "script-src 'self' 'sha256-pxzwFnB94H7Xf4JWdbg8P7AdCCfpFHtRekPY9o3svzA='; object-src 'self'"
+}
