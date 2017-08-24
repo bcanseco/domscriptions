@@ -1,0 +1,31 @@
+{
+  "name": "domscriptions",
+  "version": "1.0.0",
+  "description": "Easily mark (without hiding!) your YouTube subscriptions.",
+  "scripts": {
+    "gulp": "node ./node_modules/gulp-cli4/bin/gulp.js"
+  },
+  "repository": "https://github.com/bcanseco/domscriptions",
+  "author": "Borja Canseco",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "chai": "^4.1.1",
+    "del": "^3.0.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-cli4": "^0.1.0",
+    "gulp-header-comment": "^0.2.1",
+    "gulp-iife": "^0.3.0",
+    "gulp-less": "^3.3.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-mocha": "^4.3.1",
+    "gulp-pug": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp4": "^4.0.2",
+    "sinon-chrome": "^2.2.1"
+  }
+}
