@@ -1,4 +1,4 @@
-# Domscriptions [![Chrome Web Store][cws-image]](cws-link)
+# Domscriptions [![Chrome Web Store][cws-image]][cws-link]
 
 [cws-image]: https://img.shields.io/chrome-web-store/v/jookgadkghdacihobldikclfhihgegla.svg
 [cws-link]: https://chrome.google.com/webstore/detail/jookgadkghdacihobldikclfhihgegla
@@ -18,4 +18,5 @@ This extension lets you <kbd>SHIFT</kbd>+<kbd>CLICK</kbd> video thumbnails on yo
 
 ## Support
 
-PRs are welcome. Please submit any bugs or comments through the Chrome Web Store's support tab.
+Please submit any bugs or comments through the [extension's support tab](https://chrome.google.com/webstore/detail/domscriptions/jookgadkghdacihobldikclfhihgegla/support).  
+PRs are welcome.
