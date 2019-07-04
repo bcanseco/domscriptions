@@ -15,3 +15,7 @@ This extension lets you <kbd>SHIFT</kbd>+<kbd>CLICK</kbd> video thumbnails on yo
 * ✅ **Custom colors** - Customize the color you want videos to be tinted with!
 * ✅ **Multi account** - Logging into another account won't wipe your marked videos!
 * ❌ **Grid only** - List view on the subscriptions page is unsupported.
+
+## Support
+
+PRs are welcome. Please submit any bugs or comments through the Chrome Web Store's support tab.
