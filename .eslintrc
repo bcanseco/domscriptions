@@ -1,0 +1,12 @@
+{
+  "env": {
+    "browser": true,
+    "webextensions": true
+  },
+  "extends": "standard",
+  "rules": {
+    "semi": ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
+    "object-curly-spacing": ["error", "never"]
+  }
+}
