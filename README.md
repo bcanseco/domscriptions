@@ -7,6 +7,8 @@
 
 This extension lets you <kbd>SHIFT</kbd>+<kbd>CLICK</kbd> video thumbnails on your [subscriptions feed](https://youtube.com/feed/subscriptions) to toggle tinting them a darker shade of color. Useful for people that have a lot of subscriptions and like making their own visual cues.
 
+Note that the extension works only when you go to your sub feed directly (e.g. via bookmark).
+
 ![Demo](.github/demo.gif)
 
 ## Features
