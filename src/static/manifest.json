@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Domscriptions",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Easily mark (without hiding!) your YouTube subscriptions.",
   "homepage_url": "https://github.com/bcanseco/domscriptions",
   "author": "Borja Canseco",
