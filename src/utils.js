@@ -17,7 +17,7 @@ export const storeVideo = (id, shouldTint) => {
  * @return {String}
  */
 export const getVideoId = (element) => new URLSearchParams(
-  new URL(element.querySelector('ytd-thumbnail *[href]').href).search
+  new URL(element.querySelector('ytd-thumbnail *[href]').href).search,
 ).get('v');
 
 /**
@@ -28,13 +28,10 @@ export const onShiftClickVideo = (event) => {
   if (!event.shiftKey) return;
 
   const video = event.target.closest('ytd-grid-video-renderer');
-  storeVideo(getVideoId(video), !video.hasAttribute(TINTED_ATTRIBUTE_NAME));
+  const shouldTint = !JSON.parse(video.getAttribute(TINTED_ATTRIBUTE_NAME));
 
-  if (video.hasAttribute(TINTED_ATTRIBUTE_NAME)) {
-    video.removeAttribute(TINTED_ATTRIBUTE_NAME);
-  } else {
-    video.setAttribute(TINTED_ATTRIBUTE_NAME, '');
-  }
+  storeVideo(getVideoId(video), shouldTint);
+  video.setAttribute(TINTED_ATTRIBUTE_NAME, shouldTint);
 
   event.preventDefault();
   event.stopPropagation();
@@ -77,7 +74,7 @@ export const injectStylesheet = async () => {
 
   stylesheet.setAttribute(TINTED_ATTRIBUTE_NAME, '');
   stylesheet.innerHTML = `
-    *[${TINTED_ATTRIBUTE_NAME}] {
+    *[${TINTED_ATTRIBUTE_NAME}="true"] {
       background-color: ${tint} !important;
     }
   `;
