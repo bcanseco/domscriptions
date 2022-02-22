@@ -1,4 +1,4 @@
-import {TINTED_ATTRIBUTE_NAME, SAVED_TINT_COLOR_NAME, DEFAULT_TINT_COLOR} from './constants';
+import {TINTED_ATTRIBUTE_NAME, SAVED_TINT_COLOR_NAME, DEFAULT_TINT_COLOR, VIDEO_TARGET, VIDEO_THUMBNAIL_TARGET} from './constants';
 
 /**
  * Stores a video's tint setting with `chrome.storage`.
@@ -12,13 +12,19 @@ export const storeVideo = (id, shouldTint) => {
 };
 
 /**
- * Given a `ytd-grid-video-renderer` element, returns its unique YouTube video ID.
+ * Given a Youtube video DOM element, returns its unique YouTube video ID.
  * @param {HTMLElement} element
  * @return {String}
  */
-export const getVideoId = (element) => new URLSearchParams(
-  new URL(element.querySelector('ytd-thumbnail *[href]').href).search,
-).get('v');
+export const getVideoId = (element) => {
+  const href = new URL(element.querySelector(VIDEO_THUMBNAIL_TARGET).href);
+
+  if (href.pathname.includes('shorts')) {
+    return href.pathname.split('/').pop();
+  } else {
+    return new URLSearchParams(href.search).get('v');
+  }
+};
 
 /**
  * Toggles tinting a video on both the DOM and Chrome storage.
@@ -27,7 +33,7 @@ export const getVideoId = (element) => new URLSearchParams(
 export const onShiftClickVideo = (event) => {
   if (!event.shiftKey) return;
 
-  const video = event.target.closest('ytd-grid-video-renderer');
+  const video = event.target.closest(VIDEO_TARGET);
   const shouldTint = !JSON.parse(video.getAttribute(TINTED_ATTRIBUTE_NAME));
 
   storeVideo(getVideoId(video), shouldTint);
@@ -43,7 +49,7 @@ export const onShiftClickVideo = (event) => {
  * @return {Object.<string, HTMLElement>}
  */
 export const scrapeVideoMap = () => Array
-  .from(document.getElementsByTagName('ytd-grid-video-renderer'))
+  .from(document.getElementsByTagName(VIDEO_TARGET))
   .reduce((accumulator, video) => ({
     ...accumulator,
     [getVideoId(video)]: video,

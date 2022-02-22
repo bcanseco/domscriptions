@@ -1,5 +1,5 @@
 import * as utils from './utils';
-import {TINTED_ATTRIBUTE_NAME} from './constants';
+import {TINTED_ATTRIBUTE_NAME, MUTATION_OBSERVER_TARGET, MAX_STORED_KEYS, WAIT_FOR_PAGE_INTERVAL_MS} from './constants';
 
 (async () => {
   await utils.injectStylesheet();
@@ -10,7 +10,7 @@ import {TINTED_ATTRIBUTE_NAME} from './constants';
 
     Object
       .entries(videoMap)
-      .filter(([id, element]) => !element.hasAttribute(TINTED_ATTRIBUTE_NAME))
+      .filter(([_, element]) => !element.hasAttribute(TINTED_ATTRIBUTE_NAME))
       .forEach(([id, element]) => {
         element.addEventListener('click', utils.onShiftClickVideo);
         element.setAttribute(TINTED_ATTRIBUTE_NAME, Boolean(storedTintedVideos[id]));
@@ -20,18 +20,26 @@ import {TINTED_ATTRIBUTE_NAME} from './constants';
      * Removes old keys from `chrome.storage.sync` to avoid hitting the max limit.
      * @see https://developer.chrome.com/extensions/storage#property-sync-MAX_ITEMS
      */
-    if (Object.keys(storedTintedVideos).length >= 400) {
+    if (Object.keys(storedTintedVideos).length >= MAX_STORED_KEYS) {
       const oldVideoIds = Object.keys(storedTintedVideos).filter((id) => !videoMap[id]);
       chrome.storage.sync.remove(oldVideoIds);
     }
   };
 
-  onLoadMoreSubscriptions();
+  const waitForPageInterval = setInterval(() => {
+    const subsPage = document.querySelector(MUTATION_OBSERVER_TARGET);
 
-  new MutationObserver(onLoadMoreSubscriptions).observe(
-    document.querySelector('ytd-section-list-renderer[page-subtype="subscriptions"] > #contents'),
-    {
-      childList: true, // triggers observer callback when scrolling to load more subscription videos
-    },
+    if (subsPage) {
+      clearInterval(waitForPageInterval);
+      new MutationObserver(onLoadMoreSubscriptions).observe(subsPage, {
+        childList: true, // triggers observer callback when scrolling to load more subscription videos
+      });
+    }
+  }, WAIT_FOR_PAGE_INTERVAL_MS);
+
+  console.log(
+    ['%c', '🎨', '\n', '%c', 'Domscriptions is running', '\n'].join(''),
+    'font-size: 9em',
+    'font-weight: bold',
   );
 })();

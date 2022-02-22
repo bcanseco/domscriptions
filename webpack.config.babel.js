@@ -3,21 +3,18 @@ import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {DEFAULT_TINT_COLOR, SAVED_TINT_COLOR_NAME} from './src/constants';
+import {name} from './package.json';
 
 export default {
   mode: 'production',
   entry: {
-    domscriptions: resolve(__dirname, 'src'),
+    [name]: resolve(__dirname, 'src'),
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         use: 'babel-loader',
-      },
-      {
-        test: /\.pug$/,
-        use: 'pug-loader',
       },
     ],
   },
@@ -26,10 +23,16 @@ export default {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin([resolve(__dirname, 'src', 'static')]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: resolve(__dirname, 'src', 'static'),
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       filename: 'options.html',
-      template: resolve(__dirname, 'src', 'views', 'options.pug'),
+      template: resolve(__dirname, 'src', 'views', 'options.ejs'),
       templateParameters: {DEFAULT_TINT_COLOR, SAVED_TINT_COLOR_NAME},
       inject: false,
     }),
