@@ -41,6 +41,7 @@ export const onShiftClickVideo = (event) => {
 
   event.preventDefault();
   event.stopPropagation();
+  event.stopImmediatePropagation();
   return false;
 };
 
@@ -49,7 +50,7 @@ export const onShiftClickVideo = (event) => {
  * @return {Object.<string, HTMLElement>}
  */
 export const scrapeVideoMap = () => Array
-  .from(document.getElementsByTagName(VIDEO_TARGET))
+  .from(document.querySelectorAll(VIDEO_TARGET))
   .reduce((accumulator, video) => ({
     ...accumulator,
     [getVideoId(video)]: video,
@@ -86,4 +87,16 @@ export const injectStylesheet = async () => {
   `;
 
   document.body.appendChild(stylesheet);
+};
+
+/**
+ * Logs to the console.
+ * @param {object} message
+ */
+export const log = (message) => {
+  console.log(
+    ['%c', '🎨', '\n', '%c', message, '\n'].join(''),
+    'font-size: 9em',
+    'font-weight: bold',
+  );
 };

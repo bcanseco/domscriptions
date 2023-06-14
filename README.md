@@ -17,6 +17,7 @@ Note that the extension works only when you go to your sub feed directly (e.g. v
 * ✅ **Custom colors** - Customize the color you want videos to be tinted with!
 * ✅ **Multi account** - Logging into another account won't wipe your marked videos!
 * ❌ **Grid only** - List view on the subscriptions page is unsupported.
+* ❌ **Disables previewing** - This extension disables YouTube's video preview on mouseover.
 
 ## Support
 
