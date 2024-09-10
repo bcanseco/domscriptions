@@ -4,7 +4,7 @@ export const DEFAULT_TINT_COLOR = '#4e4e4e';
 export const MUTATION_OBSERVER_TARGET = '*[page-subtype="subscriptions"] #contents';
 export const VIDEO_PREVIEW_TARGET = 'ytd-app > #video-preview';
 export const VIDEO_TARGET = 'ytd-rich-item-renderer';
-export const VIDEO_THUMBNAIL_TARGET = 'ytd-thumbnail *[href]';
+export const VIDEO_THUMBNAIL_TARGET = 'a[href]';
 export const MAX_STORED_KEYS = 400;
 export const WAIT_FOR_PAGE_INTERVAL_MS = 200;
 export const WAIT_FOR_VIDEO_PREVIEW_INTERVAL_MS = 200;
