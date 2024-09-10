@@ -23,3 +23,7 @@ Note that the extension works only when you go to your sub feed directly (e.g. v
 
 Please submit any bugs or comments through the [extension's support tab](https://chrome.google.com/webstore/detail/domscriptions/jookgadkghdacihobldikclfhihgegla/support).  
 PRs are welcome.
+
+## Privacy policy
+
+This extension does not collect user data. All data used by this extension is kept within the Chrome APIs and not accessed by anyone.
