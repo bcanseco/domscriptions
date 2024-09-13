@@ -13,7 +13,7 @@ import {TINTED_ATTRIBUTE_NAME, MUTATION_OBSERVER_TARGET, VIDEO_PREVIEW_TARGET, M
       .entries(videoMap)
       .filter(([_, element]) => !element.hasAttribute(TINTED_ATTRIBUTE_NAME))
       .forEach(([id, element]) => {
-        element.addEventListener('click', utils.onShiftClickVideo);
+        element.addEventListener('click', utils.onShiftClickVideo, {capture: true});
         element.setAttribute(TINTED_ATTRIBUTE_NAME, Boolean(storedTintedVideos[id]));
       });
 
