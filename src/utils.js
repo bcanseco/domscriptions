@@ -51,6 +51,7 @@ export const onShiftClickVideo = (event) => {
  */
 export const scrapeVideoMap = () => Array
   .from(document.querySelectorAll(VIDEO_TARGET))
+  .filter(element => Boolean(element.querySelector(VIDEO_THUMBNAIL_TARGET)))
   .reduce((accumulator, video) => ({
     ...accumulator,
     [getVideoId(video)]: video,
@@ -93,10 +94,13 @@ export const injectStylesheet = async () => {
  * Logs to the console.
  * @param {object} message
  */
-export const log = (message) => {
+export const log = (message, ...other) => {
   console.log(
     ['%c', '🎨', '\n', '%c', message, '\n'].join(''),
     'font-size: 9em',
     'font-weight: bold',
   );
+  if (other?.length) {
+    console.log(...other);
+  }
 };

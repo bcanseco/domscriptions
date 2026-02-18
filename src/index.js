@@ -32,11 +32,13 @@ import {TINTED_ATTRIBUTE_NAME, MUTATION_OBSERVER_TARGET, VIDEO_PREVIEW_TARGET, M
     const subsPage = document.querySelector(MUTATION_OBSERVER_TARGET);
 
     if (subsPage) {
-      utils.log('Found the subs page.');
+      utils.log('Found the subs page.', subsPage);
       clearInterval(waitForPageInterval);
       onLoadMoreSubscriptions();
       new MutationObserver(onLoadMoreSubscriptions).observe(subsPage, {
-        childList: true, // triggers observer callback when scrolling to load more subscription videos
+        // triggers observer callback when scrolling to load more subscription videos
+        childList: true,
+        subtree: true,
       });
     } else {
       utils.log(`Didn't find the subs page. Retrying in ${WAIT_FOR_PAGE_INTERVAL_MS}ms`);
@@ -47,7 +49,7 @@ import {TINTED_ATTRIBUTE_NAME, MUTATION_OBSERVER_TARGET, VIDEO_PREVIEW_TARGET, M
     const videoPreview = document.querySelector(VIDEO_PREVIEW_TARGET);
 
     if (videoPreview) {
-      utils.log('Found the video preview.');
+      utils.log('Found the video preview.', videoPreview);
       clearInterval(waitForVideoPreviewInterval);
       videoPreview.remove(); // causes issues with the shift+click listener
     } else {
