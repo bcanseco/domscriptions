@@ -1,5 +1,5 @@
 import * as utils from './utils';
-import {TINTED_ATTRIBUTE_NAME, MUTATION_OBSERVER_TARGET, VIDEO_PREVIEW_TARGET, MAX_STORED_KEYS, WAIT_FOR_PAGE_INTERVAL_MS, WAIT_FOR_VIDEO_PREVIEW_INTERVAL_MS} from './constants';
+import {TINTED_ATTRIBUTE_NAME, MUTATION_OBSERVER_TARGET, VIDEO_PREVIEW_TARGET, MOST_RELEVANT_SECTION_TITLE_TARGET, MOST_RELEVANT_SECTION_TARGET, MAX_STORED_KEYS, WAIT_FOR_PAGE_INTERVAL_MS, WAIT_FOR_VIDEO_PREVIEW_INTERVAL_MS, WAIT_FOR_MOST_RELEVANT_SECTION_INTERVAL_MS} from './constants';
 
 (async () => {
   await utils.injectStylesheet();
@@ -56,6 +56,22 @@ import {TINTED_ATTRIBUTE_NAME, MUTATION_OBSERVER_TARGET, VIDEO_PREVIEW_TARGET, M
       utils.log(`Didn't find the video preview. Retrying in ${WAIT_FOR_VIDEO_PREVIEW_INTERVAL_MS}ms`);
     }
   }, WAIT_FOR_VIDEO_PREVIEW_INTERVAL_MS);
+
+  const waitForMostRelevantSectionInterval = setInterval(() => {
+    const mostRelevantSection = Array
+      .from(document.querySelectorAll(MOST_RELEVANT_SECTION_TITLE_TARGET))
+      .filter(e => e.innerText === 'Most relevant')
+      .map(e => e.closest(MOST_RELEVANT_SECTION_TARGET))
+      .shift();
+
+    if (mostRelevantSection) {
+      utils.log('Found the "Most relevant" section.', mostRelevantSection);
+      clearInterval(waitForMostRelevantSectionInterval);
+      mostRelevantSection.remove();
+    } else {
+      utils.log(`Didn't find the video preview. Retrying in ${WAIT_FOR_MOST_RELEVANT_SECTION_INTERVAL_MS}ms`);
+    }
+  }, WAIT_FOR_MOST_RELEVANT_SECTION_INTERVAL_MS);
 
   utils.log('Domscriptions is running!');
 })();
