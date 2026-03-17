@@ -57,19 +57,18 @@ import {TINTED_ATTRIBUTE_NAME, MUTATION_OBSERVER_TARGET, VIDEO_PREVIEW_TARGET, M
     }
   }, WAIT_FOR_VIDEO_PREVIEW_INTERVAL_MS);
 
-  const waitForMostRelevantSectionInterval = setInterval(() => {
-    const mostRelevantSection = Array
+  const waitForMostRelevantSectionsInterval = setInterval(() => {
+    const mostRelevantSections = Array
       .from(document.querySelectorAll(MOST_RELEVANT_SECTION_TITLE_TARGET))
       .filter(e => e.innerText === 'Most relevant')
-      .map(e => e.closest(MOST_RELEVANT_SECTION_TARGET))
-      .shift();
+      .map(e => e.closest(MOST_RELEVANT_SECTION_TARGET));
 
-    if (mostRelevantSection) {
-      utils.log('Found the "Most relevant" section.', mostRelevantSection);
-      clearInterval(waitForMostRelevantSectionInterval);
-      mostRelevantSection.remove();
+    if (mostRelevantSections.length > 0) {
+      utils.log('Found the "Most relevant" sections.', mostRelevantSections);
+      clearInterval(waitForMostRelevantSectionsInterval);
+      mostRelevantSections.forEach(mostRelevantSection => mostRelevantSection.remove());
     } else {
-      utils.log(`Didn't find the video preview. Retrying in ${WAIT_FOR_MOST_RELEVANT_SECTION_INTERVAL_MS}ms`);
+      utils.log(`Didn't find the "Most relevant" sections. Retrying in ${WAIT_FOR_MOST_RELEVANT_SECTION_INTERVAL_MS}ms`);
     }
   }, WAIT_FOR_MOST_RELEVANT_SECTION_INTERVAL_MS);
 
